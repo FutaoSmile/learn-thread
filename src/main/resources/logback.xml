@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <jmxConfigurator/>
+    <!--引用springboot的配置-->
+    <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+
+    <!--定义变量-->
+    <!--    <property name="LOG_PATH" value="logback-logs"/>-->
+    <!--或者在spring配置文件中设置logging.path-->
+
+    <!--    <conversionRule conversionWord="msg" converterClass="com.lazy.tools.log.LogBackToStringLayout"/>-->
+
+    <!--输出到控制台-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                <!--
+                %d          时间
+                %thread     线程名
+                %-5level    日志等级
+                %logger{n}  包名和类名的长度n，超过N将只输出包的第一个字符
+                %M          方法名
+                %msg        需要输出的真实的日志数据
+                %n          换行
+                %magenta()  设置输出的颜色，比如%red()
+                %highlight() 高亮
+                -->
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%thread]) %highlight(%logger{1}.%M) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36}.%M - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                logs/log_debug_%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--每个日志文件的最大大小-->
+            <!--            <maxFileSize>10MB</maxFileSize>-->
+            <!--日志保留天数-->
+            <maxHistory>180</maxHistory>
+            <!--日志的最大大小，如果大于这个值，前面的日志将被移除-->
+            <!--            <totalSizeCap>1800MB</totalSizeCap>-->
+        </rollingPolicy>
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36}.%M - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                logs/log_info_%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--每个日志文件的最大大小-->
+            <!--            <maxFileSize>10MB</maxFileSize>-->
+            <!--日志保留天数-->
+            <maxHistory>180</maxHistory>
+            <!--日志的最大大小，如果大于这个值，前面的日志将被移除-->
+            <!--            <totalSizeCap>1800MB</totalSizeCap>-->
+        </rollingPolicy>
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="FILE-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36}.%M - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                logs/log_warn_%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--每个日志文件的最大大小-->
+            <!--            <maxFileSize>10MB</maxFileSize>-->
+            <!--日志保留天数-->
+            <maxHistory>360</maxHistory>
+            <!--日志的最大大小，如果大于这个值，前面的日志将被移除-->
+            <!--            <totalSizeCap>1800MB</totalSizeCap>-->
+        </rollingPolicy>
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36}.%M - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                logs/log_error_%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <!--每个日志文件的最大大小-->
+            <!--            <maxFileSize>10MB</maxFileSize>-->
+            <!--日志保留天数-->
+            <maxHistory>360</maxHistory>
+            <!--日志的最大大小，如果大于这个值，前面的日志将被移除-->
+            <!--            <totalSizeCap>1800MB</totalSizeCap>-->
+        </rollingPolicy>
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--个人理解：启动哪些appender-->
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-DEBUG"/>
+        <appender-ref ref="FILE-INFO"/>
+        <appender-ref ref="FILE-WARN"/>
+        <appender-ref ref="FILE-ERROR"/>
+    </root>
+
+    <!--DEV环境启用的appender-->
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE-DEBUG"/>
+            <appender-ref ref="FILE-INFO"/>
+            <appender-ref ref="FILE-WARN"/>
+            <appender-ref ref="FILE-ERROR"/>
+        </root>
+    </springProfile>
+
+    <!--PRD环境启用的appender-->
+    <springProfile name="prd">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE-DEBUG"/>
+            <appender-ref ref="FILE-INFO"/>
+            <appender-ref ref="FILE-WARN"/>
+            <appender-ref ref="FILE-ERROR"/>
+        </root>
+    </springProfile>
+
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="com.ibatis" level="DEBUG"/>
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"/>
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.hibernate.type" level="WARN"/>
+    <logger name="org.hibernate.tool" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache.http" level="WARN"/>
+
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <!-- 单独设置某个类(包)的日志输出级别、或者在配置文件中设置logging.level.com.lankydan.service.MyServiceImpl=debug-->
+    <!--这里需要注意，如果这样写的话，那么其他appender对于这个类(包就无效了)-->
+    <!--    <logger name="com.futao.eurekaserver.EurekaServerApplication" level="trace" additivity="false">-->
+    <!--        <appender-ref ref="STDOUT"/>-->
+    <!--    </logger>-->
+</configuration>
