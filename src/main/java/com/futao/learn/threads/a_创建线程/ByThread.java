@@ -1,6 +1,8 @@
 package com.futao.learn.threads.a_创建线程;
 
 /**
+ * 通过继承Thread类，重写run()方法实现的线程
+ *
  * @author futao
  * @date 2020/6/4
  */

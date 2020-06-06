@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask;
  */
 public class CallableFutureTask {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        FutureTask<String> task = new FutureTask<String>(new Callable<String>() {
+        FutureTask<String> task = new FutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
                 System.out.println("666");
@@ -19,7 +19,7 @@ public class CallableFutureTask {
             }
         });
         new Thread(task).start();
-        //将会阻塞，直到线程执行完毕
+        //将会阻塞，直到线程任务执行完毕
         System.out.println(task.get());
     }
 }
