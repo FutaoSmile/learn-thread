@@ -1,4 +1,4 @@
-package com.futao.learn.threads.a_1;
+package com.futao.learn.threads.a_创建线程;
 
 /**
  * @author futao

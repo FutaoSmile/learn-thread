@@ -15,4 +15,10 @@
     * [线程池](ThreadPool.java): 本质是通过线程工厂中`new Thread()`创建的线程。
     * [FutureTask<>与Callable](./CallableFutureTask.java)，FutureTask间接实现了Runnable接口，本质上也只是实现线程执行单元的一种方法，最终需要将FutureTask对象传入Thread()对象进行执行。
     
-    
+* 本质只有一种方法，那就是创建Thread()对象。但是通常区分为两种形式。另外还有其他表现形式，例如线程池，FutureTask等
+* 继承Thread和Runnable方式的对比：
+    1. 从代码架构角度：解耦。通过实现Runnable接口的方式可以让程序只关注具体的线程任务，而不需要关心线程的启动执行状态和销毁。
+    2. 从性能损耗角度: （没搞明白实现Runnable接口的方式是如何实现线程的复用的？？？？？）
+        * 继承Thread的方式，每次创建新的线程都需要实例化Thread子类对象。
+        * 实现接口的方式，可以复用Runnable子类对象。
+    3. Java只支持单继承，所以实现Runnable接口的方式更好，避免继承的局限。
