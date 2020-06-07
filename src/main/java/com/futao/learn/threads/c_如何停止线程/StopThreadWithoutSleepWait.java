@@ -10,7 +10,7 @@ public class StopThreadWithoutSleepWait implements Runnable {
 
     @Override
     public void run() {
-        unHandleInterrupt();
+//        unHandleInterrupt();
         handleInterrupt();
     }
 
@@ -19,6 +19,7 @@ public class StopThreadWithoutSleepWait implements Runnable {
      */
     public void unHandleInterrupt() {
         int num = 0;
+        //打印最大整数一半的范围内10000的倍数
         while (num <= Integer.MAX_VALUE / 2) {
             if (num % 10000 == 0) {
                 System.out.println(num + "是10000倍数");

@@ -24,8 +24,11 @@ public class StopThreadWithSleep {
             }
             System.out.println("线程执行完毕");
         });
+        //启动线程
         thread.start();
+        //等待while循环执行完毕
         Thread.sleep(200L);
+        //当线程处于sleep()状态时进行中断
         thread.interrupt();
     }
 }

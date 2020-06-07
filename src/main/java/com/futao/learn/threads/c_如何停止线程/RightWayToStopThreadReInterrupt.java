@@ -10,10 +10,11 @@ package com.futao.learn.threads.c_如何停止线程;
 public class RightWayToStopThreadReInterrupt implements Runnable {
     @Override
     public void run() {
-        while (true && !Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
             System.out.println("running...");
             throwInMethod();
         }
+        System.out.println("线程任务执行完毕");
     }
 
     private void throwInMethod() {

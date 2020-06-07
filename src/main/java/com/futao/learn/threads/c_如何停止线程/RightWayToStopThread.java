@@ -2,7 +2,7 @@ package com.futao.learn.threads.c_如何停止线程;
 
 /**
  * 正确停止线程的方式1-抛出中断
- * catch住InterruptException之后，优先在方法签名中抛出该异常
+ * 优先在方法签名中抛出该异常
  *
  * @author futao
  * @date 2020/6/6
@@ -11,8 +11,8 @@ public class RightWayToStopThread implements Runnable {
 
     @Override
     public void run() {
-        catchInMethodCaller();
-//        throwInMethodCaller();
+//        catchInMethodCaller();
+        throwInMethodCaller();
     }
 
     private void catchInMethodCaller() {
@@ -27,8 +27,8 @@ public class RightWayToStopThread implements Runnable {
      */
     private void throwInMethodCaller() {
         while (true) {
+            System.out.println("running...");
             try {
-                System.out.println("running...");
                 throwInMethod();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -39,11 +39,12 @@ public class RightWayToStopThread implements Runnable {
     }
 
     /**
-     * 抛出异常
+     * 业务方法应该将中断异常抛出，将异常传递给上层--传递中断
      *
      * @throws InterruptedException
      */
     private void throwInMethod() throws InterruptedException {
+        System.out.println("业务执行中.....");
         Thread.sleep(2000L);
     }
 
