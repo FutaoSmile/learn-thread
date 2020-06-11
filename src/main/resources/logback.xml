@@ -25,7 +25,7 @@
                 %magenta()  设置输出的颜色，比如%red()
                 %highlight() 高亮
                 -->
-                %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%thread]) %highlight(%logger{1}.%M) - %msg%n
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%thread]) %highlight(%logger{100}.%M) - %msg%n
             </pattern>
         </encoder>
     </appender>
