@@ -11,7 +11,7 @@ public class Wait implements Runnable {
 
     private static final Object SOURCE = new Object();
 
-
+    @Override
     public void run() {
         synchronized (SOURCE) {
             System.out.println("线程[" + Thread.currentThread().getName() + "]获取到了锁");
