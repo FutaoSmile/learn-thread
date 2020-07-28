@@ -16,27 +16,28 @@ public class ThreadProperties {
         Thread mainThread = Thread.currentThread();
         Thread childThread = new Thread(() -> {
             try {
-                TimeUnit.MINUTES.sleep(10L);
+                TimeUnit.SECONDS.sleep(2L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 Thread.currentThread().interrupt();
             }
         });
-//        childThread.setDaemon(true);
+        //必须在start()之前设置线程的优先级
+        //childThread.setDaemon(true);
         childThread.start();
 
         LOGGER.info("main线程的id:{}", mainThread.getId());
         LOGGER.info("子线程的id:{}", childThread.getId());
-
 
         LOGGER.info("main线程的名字:{}", mainThread.getName());
         LOGGER.info("子线程的名字(修改之前):{}", childThread.getName());
         childThread.setName("childThread-1");
         LOGGER.info("子线程的名字(修改之后):{}", childThread.getName());
 
-
         LOGGER.info("main线程是否是守护线程{}", mainThread.isDaemon());
         LOGGER.info("子线程线程是否是守护线程{}", childThread.isDaemon());
+
+        //不能在线程运行过程中设置线程的优先级
         childThread.setDaemon(true);
         LOGGER.info("子线程线程是否是守护线程{}", childThread.isDaemon());
 

@@ -1,6 +1,6 @@
 ### # 线程属性
 * id: 
-    * 线程唯一标识。不允许修改。
+    * 线程唯一标识。自动生成。不允许修改。
 * name: 
     * 线程的名字，可以自定义成有具体含义的名字，便于识别不同作用的线程。（可同名）
 * isDaemon: 
@@ -14,17 +14,26 @@
     * 线程优先级。
     * 优先级高的线程概率上会优先运行。并不可靠.
     * Java中的线程优先级有10个，默认是5，且子线程会继承父线程的优先级。
-    * 不可靠：java中的线程优先级有10个，但是OS的线程优先级并不一定是10个，所以存在java中好几个优先级对应OS中的同一个优先级，所以不可靠。
-        * 所以程序不应该依赖优先级。
+    * 不可靠：java中的线程优先级有10个，但是OS的线程优先级并不一定是10个，所以存在java中好几个优先级对应OS中的同一个优先级，不可靠。
+        * 程序不应该依赖优先级。
         * 优先级一般默认设置成5即可。
     
     
 ### # ID
 * 源码
 ```java
+
+    /* For generating thread ID */
+    private static long threadSeqNumber;
+
+    private void init(ThreadGroup g, Runnable target, String name,
+                      long stackSize, AccessControlContext acc,
+                      boolean inheritThreadLocals) {
+        ...
         /* Set thread ID */
         tid = nextThreadID();
-
+        ...
+    }
 
     private static synchronized long nextThreadID() {
         return ++threadSeqNumber;
