@@ -7,7 +7,7 @@
     * 核心参数
         * corePoolSize
         * maxPoolSize
-        * workQueue(size)
+        * workQueue(size) 
             * 直接交换  SynchronousQueue 内部大小为0，无法存储任务，中转队列
             * 无界队列(maxPoolSize无效，没有容量上限，当心OOM)  没有设置容量（默认为Integer.MAX_VALUE，可以理解为无限大）的LinkedBlockingQueue
             * 有界队列  ArrayBlockingQueue, 设置了容量的LinkedBlockingQueue
@@ -78,5 +78,17 @@
         log.info("线程池终止");
     }
 ```
+            
+* 线程状态
+    * RUNNING
+        * 接收新任务并且处理排队任务
+    * SHUTDOWN
+        * 不接收新任务，但是处理排队中的任务
+    * STOP
+        * 不接收新任务，也不处理排队中的任务，并且中断正在进行中的任务
+    * TIDYING
+        * 中文是`整洁`，所有任务都终止了，workCount=0，线程会转到tidying状态，并将运行terminate()钩子方法
+    * TERMINATED 
+        * terminate()运行完成
             
         
