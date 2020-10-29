@@ -14,10 +14,10 @@ public class InterruptMethod {
             }
         });
 
-        //启动线程
+        // 启动线程
         thread.start();
         System.out.println(thread.isInterrupted());
-        //向线程发送中断信号
+        // 向线程发送中断信号
         thread.interrupt();
         System.out.println(thread.isInterrupted());
         System.out.println(thread.isInterrupted());
