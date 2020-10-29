@@ -20,6 +20,7 @@ public class Z7_CountDownLatch_2 {
         for (int i = 0; i < 5; i++) {
             threadPool.execute(() -> {
                 try {
+                    //五个线程都在此等待计数器归零
                     countDownLatch.await();
                     System.out.println(Thread.currentThread().getName() + "开始执行");
                 } catch (InterruptedException e) {
